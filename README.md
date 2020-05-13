@@ -1,4 +1,4 @@
-# iothub-project
+
 IOT HUB DEVICE PROVISIONING AND LIFE CYCLE
 ---------------------------------------------
 

@@ -22,11 +22,11 @@ openssl x509 -req -in leaf.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial 
 
 Steps to upload the certificate to DPS Service
 ---------------------------------------------------
-step1:create a device provisioning service using azure client or porta
-step2:create a IOT HUB using azure client or portal
-step3:link the DPS to IOTHUB 
-step4:go to Manage enrollments->Add Individual enrollments  
-step5:in the primary certificate upload the leaf_certificate.pem
+step1:create a device provisioning service using azure client or portal   
+step2:create a IOT HUB using azure client or portal  
+step3:link the DPS to IOTHUB   
+step4:go to Manage enrollments->Add Individual enrollments   
+step5:in the primary certificate upload the leaf_certificate.pem   
 
 
-Before running the program copy  leaf_certificate.pem string to SecurityProvider->leafPublicPem variable and leaf_private_key.pem string to  SecurityProvider->leafPrivateKey
+Before running the program copy  leaf_certificate.pem string to SecurityProvider->leafPublicPem variable and leaf_private_key.pem string to  SecurityProvider->leafPrivateKey  

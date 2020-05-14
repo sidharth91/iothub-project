@@ -2,6 +2,19 @@
 IOT HUB DEVICE PROVISIONING AND LIFE CYCLE
 ---------------------------------------------
 
+Description
+-------------
+1.individual device enrollment using device provisioning service and x509 certificate.  
+2.device to cloud message.  
+3.cloud to device message.  
+4.cloud to device direct method invoke.
+5.device twin concepta change in cloud device twin receive event in device (desired properties).
+6.reporting data from device to device twin (reported properties).    
+
+
+Certificate creation for individual device enrollment
+-------------------------------------------------------
+
 Generate Root CA private key  
 openssl genrsa -out rootCA.key 4096  //generate RSA  private key and output to rootCA.key   
 

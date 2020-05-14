@@ -7,8 +7,8 @@ Description
 1.individual device enrollment using device provisioning service and x509 certificate.  
 2.device to cloud message.  
 3.cloud to device message.  
-4.cloud to device direct method invoke.
-5.device twin concepta change in cloud device twin receive event in device (desired properties).
+4.cloud to device direct method invoke.  
+5.device twin concepta change in cloud device twin receive event in device (desired properties).  
 6.reporting data from device to device twin (reported properties).    
 
 

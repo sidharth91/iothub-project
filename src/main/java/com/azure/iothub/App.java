@@ -36,7 +36,7 @@ public class App
     public static void main( String[] args ) throws SecurityProviderException, URISyntaxException, IOException
     {
     	System.out.println("Starting...");
-        System.out.println("Beginning setup.");
+        System.out.println("Beginning setup...");
         
         ExecutorService reportService=Executors.newFixedThreadPool(1);
         ExecutorService messageService=Executors.newFixedThreadPool(1);
@@ -96,21 +96,36 @@ public class App
                     DeviceObject device=new DeviceObject(deviceId, iotHubUri, deviceClient);
                
                     //cloud to device message can be received 
-                    device.setCloudToDeviceMessageCallBack(new CloudToDeviceMessageCallback());
+                    device.setCloudToDeviceMessageCallBack(new CloudToDeviceMessageCallback(device));
                     
                     //subscribe to direct method call message in from cloud to device
-                    device.subscribeToDeviceMethod(new DirectMethodCallback(), new DirectMethodStatusCallback());
+                    device.subscribeToDeviceMethod(new DirectMethodCallback(device), new DirectMethodStatusCallback());
                    
 
                    //started the device twin
                     device.subscribeToDeviceTwin(new DeviceTwinStatusCallback(), new DeviceTwinPropertyCallback());
     
                     
-                  //subscribe to device twin desiredProperties
+                  //subscribe to device twin desiredProperties and update the "messageTimeInterval" when there is a change in device twin 
                     device.subscribeToDeviceMessageInterval(new DesiredPropertyMessageIntervalCallback(device));
                     
                     
+                    
+					/*
+					 * this thread will keep on updating the battery property field of reported property of device twin
+					 * "reported": { 
+					 * "battery": 61, 
+					 * "$metadata": { "$lastUpdated":
+					 * "2020-09-02T09:40:48.964983Z", 
+					 * "battery": { "$lastUpdated":
+					 * "2020-09-02T09:40:48.964983Z" } 
+					 * }, 
+					 * "$version": 43 } 
+					 */
                     reportService.execute(new ReporPropertyThread(device));
+                    
+                    
+                    //this thread will keep on sending the telemetry data to iothub with interval set by the device twin default 5000ms
                     messageService.execute(new TelemetryMessageThread(device));
                     
                  

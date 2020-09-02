@@ -13,10 +13,6 @@ public DesiredPropertyMessageIntervalCallback(DeviceObject device) {
 		this.device = device;
 	}
   
-  
-
-
-
 
 public void PropertyCall(String propertyKey, Object propertyValue, Object context)
   {

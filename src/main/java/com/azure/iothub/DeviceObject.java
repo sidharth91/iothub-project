@@ -20,6 +20,8 @@ public class DeviceObject {
 	private String iothubURL;
 	private DeviceClient deviceClient;
 	private int battery;
+	private boolean telemetryOn;
+	
 
 	public DeviceObject(String deviceId, String iothubURL, DeviceClient deviceClient) {
 		super();
@@ -28,7 +30,7 @@ public class DeviceObject {
 		this.deviceClient = deviceClient;
 		this.battery = 100;
 		this.messageTimeInterval = 5000;
-
+       this.telemetryOn=true;
 		// cloud to device message can be received
 		// deviceClient.setMessageCallback(new AppMessageCallback(), null);
 		try {
@@ -83,6 +85,15 @@ public class DeviceObject {
 	public void setBattery(int battery) {
 		this.battery = battery;
 	}
+	
+	
+	public boolean isTelemetryOn() {
+		return telemetryOn;
+	}
+
+	public void setTelemetryOn(boolean telemetryOn) {
+		this.telemetryOn = telemetryOn;
+	}
 
 	public void setCloudToDeviceMessageCallBack(MessageCallback callback) {
 		deviceClient.setMessageCallback(callback, null);
@@ -136,8 +147,11 @@ public class DeviceObject {
 	
 
 	public void sendMessage(String message) {
+		if(telemetryOn) {
+		System.out.println("Sending message from provisioned device with time interval of :"+messageTimeInterval);
 		Message messageToSendFromDeviceToHub = new Message(message);
 		deviceClient.sendEventAsync(messageToSendFromDeviceToHub, new MessageReceivedAckCallBack(), null);
+		}
 	}
 
 	public void reportStatusToTwin(Set<Property> property) {

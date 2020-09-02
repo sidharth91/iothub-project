@@ -28,7 +28,7 @@ public class ReporPropertyThread implements Runnable {
 				Property reportedProperty = new Property("battery", battery);
 				Set<Property> reportedProperties = new HashSet<Property>();
 				reportedProperties.add(reportedProperty);
-				System.out.println("battery " + battery);
+				System.out.println("battery value reported to device twin :" + battery);
 				device.reportStatusToTwin(reportedProperties);
 				if (battery <= 0) {
 					battery = 100;

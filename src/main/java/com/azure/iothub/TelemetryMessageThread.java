@@ -16,9 +16,9 @@ public class TelemetryMessageThread implements Runnable {
 		   while(true) {
 
 				try {
-                    System.out.println("Sending message from provisioned device...");
+                   
 					 device.sendMessage("device to cloud telemetry message");
-					 System.out.println("Message interval "+device.getMessageTimeInterval());
+
 					Thread.sleep(device.getMessageTimeInterval());
 				} catch (InterruptedException e) {
 				

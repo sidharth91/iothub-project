@@ -15,6 +15,8 @@ public CloudToDeviceMessageCallback(DeviceObject device) {
 
 		this.device = device;
 	}
+
+//Message can contain a payload as well as propety 
   public IotHubMessageResult execute(Message msg, Object context) {
     System.out.println("Received message from clound : "
       + new String(msg.getBytes(), Message.DEFAULT_IOTHUB_MESSAGE_CHARSET));

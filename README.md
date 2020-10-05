@@ -21,19 +21,19 @@ generate RSA  private key and output to rootCA.key
 
 Generate Root CA certificate  
 please do provide a common name but dont use the same common name in below steps  
-openssl req -x509 -new -key rootCA.key -days 1024 -out rootCA.pem  
+**openssl req -x509 -new -key rootCA.key -days 1024 -out rootCA.pem**  
   
 
 Generate key for device (we will call it a leaf)  
-openssl genrsa -out leaf_private_key.pem 4096  
+**openssl genrsa -out leaf_private_key.pem 4096**  
  
 Generate Certificate Signing Request for the device  
 please do provide a common name but different then previous one . this common name should be same as device id if device is 
 created or it will be used to create the deviceid same as common name  
-openssl req -new -key leaf_private_key.pem -out leaf.csr  
+**openssl req -new -key leaf_private_key.pem -out leaf.csr**  
   
 Generate device certificate (leaf certificate):give common name same as deviceid which will be registed  
-openssl x509 -req -in leaf.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out leaf_certificate.pem  
+**openssl x509 -req -in leaf.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out leaf_certificate.pem**  
   
 
 

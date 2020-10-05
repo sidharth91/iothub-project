@@ -26,9 +26,9 @@ openssl req -x509 -new -key rootCA.key -days 1024 -out rootCA.pem
 Generate key for device (we will call it a leaf)  
 openssl genrsa -out leaf_private_key.pem 4096  
  
-Generate Certificate Signing Request for the device
-#please do provide a common name but different then previous one . this common name should be same as device id if device is 
-created or it will be used to create the deviceid same as common name #
+Generate Certificate Signing Request for the device__
+please do provide a common name but different then previous one . this common name should be same as device id if device is 
+created or it will be used to create the deviceid same as common name__
 openssl req -new -key leaf_private_key.pem -out leaf.csr  
   
 Generate device certificate (leaf certificate):give common name same as deviceid which will be registed  
